@@ -15,7 +15,7 @@ window.PORTFOLIO = {
   // Discord user ID is public; never put your account token here.
   // Enable Discord Developer Mode, right-click your profile → Copy User ID.
   // Join the Lanyard Discord server so your presence is made available by Lanyard.
-  discordUserId: "", // e.g. "123456789012345678" (must be YOUR ID)
+  discordUserId: "995129234127335444", // e.g. "123456789012345678" (must be YOUR ID)
   showDiscordActivity: true,
   // Replace built-in vector icons with your own white images in assets/icons/.
   // Example: { github: "assets/icons/github.svg", discord: "assets/icons/discord.png" }
@@ -30,7 +30,7 @@ window.PORTFOLIO = {
     // Replace '#' with your real URLs. Links with '#' are hidden automatically.
     { label: "GitHub", url: "#", icon: "github" },
     { label: "Discord", url: "#", icon: "discord" },
-    { label: "Roblox", url: "#", icon: "gamepad" },
+    { label: "Roblox", url: "#", icon: "roblox" },
     { label: "Email", url: "#", icon: "mail" }
   ],
   skills: ["Web development", "UI design", "Roblox / Luau"],
