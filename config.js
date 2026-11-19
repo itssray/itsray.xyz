@@ -28,8 +28,8 @@ window.PORTFOLIO = {
   },
   socialLinks: [
     // Replace '#' with your real URLs. Links with '#' are hidden automatically.
-    { label: "GitHub", url: "#", icon: "github" },
-    { label: "Discord", url: "#", icon: "discord" },
+    { label: "GitHub", url: "assets/icons/github.svg", icon: "github" },
+    { label: "Discord", url: "", icon: "discord" },
     { label: "Roblox", url: "#", icon: "roblox" },
     { label: "Email", url: "#", icon: "mail" }
   ],
