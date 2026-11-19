@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6c8c98" />
+  <meta name="description" content="Ray — independent developer portfolio" />
+  <link rel="canonical" href="https://itsray.xyz/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="config.js"></script>
+  <script defer src="script.js"></script>
+  <title>ray — itsray.xyz</title>
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <div class="scene__noise"></div>
+    <div class="scene__orb scene__orb--one"></div>
+    <div class="scene__orb scene__orb--two"></div>
+    <div class="scene__orb scene__orb--three"></div>
+    <div class="scene__glow"></div>
+    <div class="scene__grid"></div>
+  </div>
+
+  <div class="entry" id="entry" role="button" tabindex="0" aria-label="Click or press Enter to open portfolio">
+    <div class="entry__top"><span class="dot"></span> PERSONAL SPACE <span class="entry__edition">/ 001</span></div>
+    <div class="entry__center">
+      <div class="entry__symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="entry__heading">a little corner<br />of the internet<span class="entry__period">.</span></div>
+      <p>Made with a little curiosity.</p>
+      <div class="entry__cta"><span class="entry__cta-icon">↗</span> click anywhere to enter <span class="entry__arrow">→</span></div>
+    </div>
+    <div class="entry__bottom"><span>DESIGNED TO FEEL DIFFERENT</span><span>✳ INTERACTIVE EXPERIENCE</span></div>
+  </div>
+
+  <main id="main" class="main" inert>
+    <div class="topbar"><span class="topbar__brand"><span class="topbar__asterisk">✳</span> <span data-name>yourname</span><span class="muted">.dev</span></span><span class="topbar__right"><span class="status-dot"></span> OPEN TO OPPORTUNITIES</span></div>
+
+    <section class="profile glass" aria-labelledby="profile-name">
+      <div class="profile__light" aria-hidden="true"></div>
+      <div class="profile__top"><div class="profile__eyebrow"><span class="profile__eyebrow-dash"></span> <span id="eyebrow">INDEPENDENT DEVELOPER</span></div><div class="profile__number">PORTFOLIO / 01</div></div>
+      <div class="profile__content">
+        <div class="profile__identity">
+          <div class="discord-person" id="discord-person" hidden>
+            <div class="discord-person__avatar"><img id="discord-avatar" alt="Discord profile avatar" hidden /><span id="discord-avatar-placeholder">R</span><span class="presence-dot" id="presence-dot"></span></div>
+            <div class="discord-person__meta"><span id="discord-username">Discord profile</span><span class="discord-person__status" id="discord-status">Connecting…</span></div>
+          </div>
+          <div class="profile__small-label">hey, i'm</div>
+          <h1 id="profile-name" data-name>yourname</h1>
+          <p class="profile__tagline" id="tagline">A developer turning ideas into things people love.</p>
+          <div class="profile__availability"><span class="status-dot"></span><span id="availability">Available for free projects</span></div>
+        </div>
+        <div class="profile__buttons">
+          <button class="glass-button" data-dialog="projects" type="button"><span class="button-icon" data-icon="layers"></span>Projects <span class="button-arrow">↗</span></button>
+          <button class="glass-button" data-dialog="about" type="button"><span class="button-icon" data-icon="user"></span>About me <span class="button-arrow">↗</span></button>
+          <button class="glass-button" data-dialog="contact" type="button"><span class="button-icon" data-icon="send"></span>Contact <span class="button-arrow">↗</span></button>
+        </div>
+      </div>
+      <div class="discord-activity" id="discord-activity" hidden aria-live="polite">
+        <img id="activity-art" class="discord-activity__art" alt="" hidden />
+        <div class="discord-activity__body"><div class="discord-activity__label" id="activity-label">NOW LISTENING</div><div class="discord-activity__title" id="activity-title"></div><div class="discord-activity__detail" id="activity-detail"></div><div class="discord-activity__progress" id="activity-progress" hidden><div id="activity-progress-fill"></div></div><div class="discord-activity__times" id="activity-times" hidden><span id="activity-elapsed"></span><span id="activity-duration"></span></div></div>
+      </div>
+      <div class="profile__footer"><div class="social-links" id="socials" aria-label="Social links"></div><span class="profile__footer-note">CRAFTED WITH CARE <span class="sparkle">✳</span></span></div>
+    </section>
+    <div class="bottom-label"><span>© <span id="year"></span> <span data-name>yourname</span></span><span>SCROLL LESS. EXPLORE MORE.</span><button id="replay" type="button" aria-label="Return to entry screen">↶ REPLAY INTRO</button></div>
+  </main>
+
+  <dialog class="modal glass" id="content-dialog" aria-labelledby="dialog-title">
+    <div class="modal__top"><span class="modal__kicker"><span class="dot"></span> EXPLORE / <span id="dialog-index">01</span></span><button class="modal__close" id="close-modal" aria-label="Close panel" type="button">×</button></div>
+    <div id="dialog-content"></div>
+  </dialog>
+</body>
+</html>
