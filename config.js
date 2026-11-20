@@ -20,10 +20,12 @@ window.PORTFOLIO = {
   // Replace built-in vector icons with your own white images in assets/icons/.
   // Example: { github: "assets/icons/github.svg", discord: "assets/icons/discord.png" }
   customIcons: {},
-  // Original synthesized ambient background sound. No music file required.
-  backgroundMusic: { enabled: true, volume: 0.22 },
+  // Upload music.mp3 to the repository root, or update src to its actual path.
+  backgroundMusic: { enabled: true, src: "music.mp3", volume: 0.22 },
   accent: "#b4e9ff",
+  // Upload background.mp4 to the repository root, or update video to its actual path.
   background: {
+    video: "background.mp4",
     color1: "#4d8793",
     color2: "#829d9a",
     color3: "#465b76"
@@ -33,7 +35,7 @@ window.PORTFOLIO = {
     { label: "GitHub", url: "https://github.com/itssray", icon: "github" },
     { label: "Discord", url: "https://discord.com/users/995129234127335444", icon: "discord" },
     { label: "Roblox", url: "https://www.roblox.com/users/1376949375/profile", icon: "roblox" },
-    { label: "Email", url: "ray@itsray.xyz", icon: "mail" }
+    { label: "Email", url: "mailto:ray@itsray.xyz", icon: "mail" }
   ],
   skills: ["Plugin Development", "UI design", "Roblox / Luau"],
   projects: [
