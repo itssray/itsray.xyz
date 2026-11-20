@@ -20,9 +20,8 @@ window.PORTFOLIO = {
   // Replace built-in vector icons with your own white images in assets/icons/.
   // Example: { github: "assets/icons/github.svg", discord: "assets/icons/discord.png" }
   customIcons: {},
-  // Add your own music file to assets/music/ and update the path below.
-  // The included soundtrack is original and plays only after a user clicks to enter.
-  backgroundMusic: { src: "assets/music/ambient.wav", volume: 0.22 },
+  // Original synthesized ambient background sound. No music file required.
+  backgroundMusic: { enabled: true, volume: 0.22 },
   accent: "#b4e9ff",
   background: {
     color1: "#4d8793",
