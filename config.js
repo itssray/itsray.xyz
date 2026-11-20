@@ -32,8 +32,8 @@ window.PORTFOLIO = {
     // Replace '#' with your real URLs. Links with '#' are hidden automatically.
     { label: "GitHub", url: "https://github.com/itssray", icon: "github" },
     { label: "Discord", url: "https://discord.com/users/995129234127335444", icon: "discord" },
-    { label: "Roblox", url: "#", icon: "roblox" },
-    { label: "Email", url: "#", icon: "mail" }
+    { label: "Roblox", url: "https://www.roblox.com/users/1376949375/profile", icon: "roblox" },
+    { label: "Email", url: "ray@itsray.xyz", icon: "mail" }
   ],
   skills: ["Plugin Development", "UI design", "Roblox / Luau"],
   projects: [
