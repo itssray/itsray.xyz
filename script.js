@@ -141,11 +141,38 @@
   const dialog = $('#content-dialog');
   const content = $('#dialog-content');
   let lastTrigger = null;
+  const music = $('#background-music');
+  const musicToggle = $('#music-toggle');
+  const musicVolume = $('#music-volume');
+  const musicConfig = config.backgroundMusic || {};
+  const musicSrc = String(musicConfig.src || '').trim();
+  if (musicSrc && !musicSrc.startsWith('//') && !/^[a-z][a-z0-9+.-]*:/i.test(musicSrc) && !musicSrc.includes('..')) music.src = musicSrc;
+  const initialVolume = Number(musicConfig.volume);
+  music.volume = Number.isFinite(initialVolume) ? Math.max(0, Math.min(1, initialVolume)) : 0.22;
+  musicVolume.value = String(Math.round(music.volume * 100));
+  const refreshMusic = () => {
+    const playing = !music.paused && !music.ended;
+    musicToggle.textContent = playing ? '♫ MUSIC ON' : '♫ MUSIC OFF';
+    musicToggle.setAttribute('aria-pressed', String(playing));
+    musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
+  };
+  const playMusic = async () => {
+    if (!music.getAttribute('src')) return;
+    try { await music.play(); } catch { /* Autoplay blocked or media unavailable. */ }
+    refreshMusic();
+  };
+  musicToggle.addEventListener('click', () => { if (music.paused) playMusic(); else { music.pause(); refreshMusic(); } });
+  musicVolume.addEventListener('input', () => { music.volume = Number(musicVolume.value) / 100; });
+  music.addEventListener('play', refreshMusic);
+  music.addEventListener('pause', refreshMusic);
+  music.addEventListener('error', () => { musicToggle.textContent = '♫ MUSIC UNAVAILABLE'; musicToggle.disabled = true; });
   const enter = () => {
+    playMusic();
     entry.classList.add('entry--gone');
     main.inert = false;
     main.classList.add('main--visible');
-    window.setTimeout(() => { entry.hidden = true; $('.glass-button')?.focus({preventScroll:true}); }, 670);
+    entry.hidden = true;
+    $('.glass-button')?.focus({preventScroll:true});
   };
   entry.addEventListener('click', enter);
   entry.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enter(); } });
