@@ -8,7 +8,7 @@ window.PORTFOLIO = {
   eyebrow: "solo developer",
   tagline: "turning ideas into things people love.",
   description: "building games & servers. ui specialist.",
-  availability: "Available for comissioned & part time projects",
+  availability: "Available for commissioned & part time projects",
   location: "The Bahamas",
   initials: "R",
   pageTitle: "ray's world",
@@ -20,6 +20,9 @@ window.PORTFOLIO = {
   // Replace built-in vector icons with your own white images in assets/icons/.
   // Example: { github: "assets/icons/github.svg", discord: "assets/icons/discord.png" }
   customIcons: {},
+  // Add your own music file to assets/music/ and update the path below.
+  // The included soundtrack is original and plays only after a user clicks to enter.
+  backgroundMusic: { src: "assets/music/ambient.wav", volume: 0.22 },
   accent: "#b4e9ff",
   background: {
     color1: "#4d8793",
@@ -28,8 +31,8 @@ window.PORTFOLIO = {
   },
   socialLinks: [
     // Replace '#' with your real URLs. Links with '#' are hidden automatically.
-    { label: "GitHub", url: "assets/icons/github.svg", icon: "github" },
-    { label: "Discord", url: "", icon: "discord" },
+    { label: "GitHub", url: "https://github.com/itssray", icon: "github" },
+    { label: "Discord", url: "https://discord.com/users/995129234127335444", icon: "discord" },
     { label: "Roblox", url: "#", icon: "roblox" },
     { label: "Email", url: "#", icon: "mail" }
   ],
