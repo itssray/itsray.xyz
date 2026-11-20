@@ -141,59 +141,47 @@
   const dialog = $('#content-dialog');
   const content = $('#dialog-content');
   let lastTrigger = null;
-  // Original ambient pad, generated locally in the browser after a visitor's click.
-  // No copyrighted recording, external service, or upload is required.
+  // Background MP4 remains muted so the MP3 is the only audio source.
+  const video = $('#background-video');
+  const videoPath = String(config.background?.video || '').trim();
+  if (videoPath && !videoPath.includes('..') && !/^(?:javascript|data):/i.test(videoPath)) {
+    video.src = videoPath;
+    video.addEventListener('error', () => { video.hidden = true; });
+    video.play().catch(() => {});
+  } else video.hidden = true;
+
+  // Use the user's MP3 instead of generated audio.
   const musicToggle = $('#music-toggle');
   const musicVolume = $('#music-volume');
   const musicConfig = config.backgroundMusic || {};
-  let audioContext = null;
-  let masterGain = null;
+  const music = new Audio();
+  music.loop = true;
+  music.preload = 'none';
+  const musicPath = String(musicConfig.src || '').trim();
+  if (musicPath && !musicPath.includes('..') && !/^(?:javascript|data):/i.test(musicPath)) music.src = musicPath;
+  const initialVolume = Number(musicConfig.volume);
+  music.volume = Number.isFinite(initialVolume) ? Math.max(0, Math.min(1, initialVolume)) : 0.22;
+  musicVolume.value = String(Math.round(music.volume * 100));
   let isMusicPlaying = false;
-  const volume = Number.isFinite(Number(musicConfig.volume)) ? Math.max(0, Math.min(1, Number(musicConfig.volume))) : 0.22;
-  musicVolume.value = String(Math.round(volume * 100));
-  function initAudio() {
-    if (audioContext) return;
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) { musicToggle.disabled = true; musicToggle.textContent = '♫ MUSIC UNAVAILABLE'; return; }
-    audioContext = new AudioContextClass();
-    masterGain = audioContext.createGain();
-    masterGain.gain.value = 0;
-    masterGain.connect(audioContext.destination);
-    const notes = [130.81, 164.81, 196, 261.63, 329.63];
-    notes.forEach((frequency, i) => {
-      const oscillator = audioContext.createOscillator();
-      const gain = audioContext.createGain();
-      oscillator.type = 'sine';
-      oscillator.frequency.value = frequency;
-      gain.gain.value = [0.11, 0.065, 0.075, 0.04, 0.025][i];
-      oscillator.connect(gain).connect(masterGain);
-      oscillator.start();
-    });
-  }
-  function refreshMusic() {
+  const refreshMusic = () => {
+    isMusicPlaying = !music.paused;
     musicToggle.textContent = isMusicPlaying ? '♫ MUSIC ON' : '♫ MUSIC OFF';
     musicToggle.setAttribute('aria-pressed', String(isMusicPlaying));
     musicToggle.setAttribute('aria-label', isMusicPlaying ? 'Pause background music' : 'Play background music');
-  }
-  async function playMusic() {
-    if (musicConfig.enabled === false) return;
-    try {
-      initAudio();
-      if (!audioContext) return;
-      await audioContext.resume();
-      masterGain.gain.setTargetAtTime(Number(musicVolume.value) / 100, audioContext.currentTime, 0.12);
-      isMusicPlaying = true;
-      refreshMusic();
-    } catch { isMusicPlaying = false; refreshMusic(); }
-  }
-  function pauseMusic() {
-    if (audioContext && masterGain) masterGain.gain.setTargetAtTime(0, audioContext.currentTime, 0.07);
-    isMusicPlaying = false;
-    refreshMusic();
-  }
-  musicToggle.addEventListener('click', () => isMusicPlaying ? pauseMusic() : playMusic());
-  musicVolume.addEventListener('input', () => {
-    if (audioContext && masterGain && isMusicPlaying) masterGain.gain.setTargetAtTime(Number(musicVolume.value) / 100, audioContext.currentTime, 0.08);
+  };
+  const playMusic = () => {
+    if (musicConfig.enabled === false || !music.src) return;
+    music.play().then(refreshMusic).catch(() => refreshMusic());
+  };
+  musicToggle.addEventListener('click', () => {
+    if (music.paused) playMusic(); else { music.pause(); refreshMusic(); }
+  });
+  musicVolume.addEventListener('input', () => { music.volume = Number(musicVolume.value) / 100; });
+  music.addEventListener('play', refreshMusic);
+  music.addEventListener('pause', refreshMusic);
+  music.addEventListener('error', () => {
+    musicToggle.textContent = '♫ MUSIC UNAVAILABLE';
+    musicToggle.disabled = true;
   });
   if (musicConfig.enabled === false) musicToggle.hidden = true;
   const enter = () => {
