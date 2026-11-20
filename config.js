@@ -5,13 +5,13 @@
 */
 window.PORTFOLIO = {
   name: "ray",
-  eyebrow: "INDEPENDENT DEVELOPER",
-  tagline: "A developer turning ideas into things people love.",
-  description: "I build clean, useful digital experiences. Currently learning, creating, and open to free development opportunities.",
-  availability: "Available for free projects",
+  eyebrow: "solo developer",
+  tagline: "turning ideas into things people love.",
+  description: "building games & servers. ui specialist.",
+  availability: "Available for comissioned & part time projects",
   location: "The Bahamas",
   initials: "R",
-  pageTitle: "ray — itsray.xyz",
+  pageTitle: "ray's world",
   // Discord user ID is public; never put your account token here.
   // Enable Discord Developer Mode, right-click your profile → Copy User ID.
   // Join the Lanyard Discord server so your presence is made available by Lanyard.
@@ -33,9 +33,10 @@ window.PORTFOLIO = {
     { label: "Roblox", url: "#", icon: "roblox" },
     { label: "Email", url: "#", icon: "mail" }
   ],
-  skills: ["Web development", "UI design", "Roblox / Luau"],
+  skills: ["Plugin Development", "UI design", "Roblox / Luau"],
   projects: [
     // Example (remove the // at the beginning of the lines when ready):
     // { title: "My first project", description: "A short description of what I built.", tags: ["HTML", "CSS"], url: "https://github.com/yourname/project", color: "cyan" }
+    { title: "SnowVanilla", description: "Clean minecraft server.", tags: ["Java"], url: "https://discord.gg/", color: "cyan" }
   ]
 };
